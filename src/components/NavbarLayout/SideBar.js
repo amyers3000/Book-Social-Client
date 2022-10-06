@@ -47,7 +47,7 @@ const SideBar = ({ open, handleDrawerClose }) => {
         <IconButton onClick={handleDrawerClose}>
           {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
         </IconButton>
-        <Typography variant='h6' component='div' sx={{pl:3}}> 
+        <Typography variant='h6' component='div' align='center' sx={{pl:1}}> 
           {displayUser}
         </Typography>
       </DrawerHeader>

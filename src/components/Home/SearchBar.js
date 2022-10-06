@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { TextField, Button } from '@mui/material/'
 
-
 function SearchBar(props) {
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
@@ -14,8 +13,6 @@ function SearchBar(props) {
             <div>
                 <TextField fullWidth type="text" placeholder="Enter a author here" onChange={(e) => setAuthor(e.target.value)} />
             </div>
-
-
             <Button variant='contained' color='secondary' type='submit'>Submit</Button>
 
         </form>

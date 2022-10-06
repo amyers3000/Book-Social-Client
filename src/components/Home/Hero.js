@@ -1,27 +1,15 @@
-import * as React from 'react';
-import { useRef } from 'react'
-
-import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
-
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-
+import React from 'react'
+import { Stack, Box, Typography, Container } from '@mui/material/';
 
 const Hero = () => {
-    let titleInput = useRef('')
-    let authorInput = useRef('')
-
-
     return (
-    
         <Box
             sx={{
                 bgcolor: 'inherit.light',
                 pt: 8,
                 pb: 6,
-            }}
-        >
+            }}>
+
             <Container maxWidth="sm">
                 <Typography
                     component="h1"
@@ -41,8 +29,6 @@ const Hero = () => {
                     spacing={2}
                     justifyContent="center"
                 >
-                    
-                    
                 </Stack>
             </Container>
         </Box>

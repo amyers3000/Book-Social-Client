@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -5,12 +6,13 @@ import Logo from '../../assets/Logo.png'
 import SideBar from './SideBar';
 import PersonIcon from '@mui/icons-material/Person';;
 
-const pages = ['Home', 'Favorites', 'BookBuds', 'Profile'];
+
+
 
 const Navbar = () => {
-
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [open, setOpen] = useState(false)
+    const pages =['Home', 'Favorites', 'Profile'] 
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -33,12 +35,10 @@ const Navbar = () => {
             <AppBar color='secondary' position="static">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <Box component="img" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} src={Logo} alt="logo" style={{ width: '80px' }} />
                         <Typography
                             variant="h6"
                             noWrap
                             component="a"
-                            href="/"
                             sx={{
                                 mr: 2,
                                 display: { xs: 'none', md: 'flex' },
@@ -88,12 +88,10 @@ const Navbar = () => {
                                 ))}
                             </Menu>
                         </Box>
-                        <Box component="img" sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} src={Logo} alt="logo" style={{ width: '80px' }} />
                         <Typography
                             variant="h5"
                             noWrap
                             component="a"
-                            href=""
                             sx={{
                                 mr: 2,
                                 display: { xs: 'flex', md: 'none' },
@@ -125,7 +123,7 @@ const Navbar = () => {
                             edge="start"
                             sx={{ mr: 2, ...(open && { display: 'none' }) }}
                         >
-                            <PersonIcon/>
+                            <PersonIcon />
                         </IconButton>
                     </Toolbar>
                 </Container>

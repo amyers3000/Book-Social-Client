@@ -1,5 +1,5 @@
-import  { useState } from 'react'
-import { Typography, Grid, Card, CardActionArea, CardContent, CardMedia, Modal, Box, Button, Icon } from '@mui/material';
+import { useState } from 'react'
+import { Typography, Grid, Card, CardActionArea, CardContent, CardMedia, Modal, Box, Button, Icon, Dialog, DialogContent, DialogTitle, DialogContentText, DialogActions } from '@mui/material';
 import Error from '../Error/Error'
 
 const GalleryItem = ({ book }) => {
@@ -7,16 +7,17 @@ const GalleryItem = ({ book }) => {
     const handleClose = () => setOpen(false)
     const handleOpen = () => setOpen(true)
 
-    async function handleSave(){
-        
+    async function handleSave() {
+
     }
 
     const style = {
+
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 800,
+
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -25,17 +26,17 @@ const GalleryItem = ({ book }) => {
 
     if (book.volumeInfo.imageLinks) {
         return (
-            <Grid item s={12} md={6}>
+            <Grid item xs={12} md={4}>
                 <CardActionArea onClick={handleOpen}>
                     <Card sx={{ height: 200, display: 'flex' }}>
                         <CardContent sx={{ flex: 1 }}>
-                            <Typography component="h2" variant="h5">
+                            <Typography gutterBottom component="h2" variant="h5">
                                 {book.volumeInfo.title}
                             </Typography>
                             <Typography variant="subtitle1" color="text.secondary">
-                                {book.volumeInfo.authors}
+                                {book.volumeInfo.authors[0]}
                             </Typography>
-                            <Icon component='a'color="secondary">add_circle</Icon>
+                            <Icon component='a' color="secondary">add_circle</Icon>
                         </CardContent>
                         <CardMedia
                             component="img"
@@ -45,30 +46,35 @@ const GalleryItem = ({ book }) => {
                         />
                     </Card>
                 </CardActionArea>
-                <Modal
+                <Dialog
                     open={open}
                     onClose={handleClose}
+                    scroll='paper'
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <Box sx={style}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                            {book.volumeInfo.title}
-                        </Typography>
-                        <Typography variant="subtitle1" color="text.secondary">
-                                {book.volumeInfo.authors}
-                            </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        {book.volumeInfo.description}
-                        </Typography>
-                        <Button onClick={handleSave} color='secondary'>Add to Favorites</Button>
-                    </Box>
-                </Modal>
+                    <DialogTitle id="modal-modal-title">
+                        {book.volumeInfo.title}
+                    </DialogTitle>
+                    <DialogContentText sx={{ pl:3}}>
+                        By: {book.volumeInfo.authors[0]}
+                    </DialogContentText>
+                    <DialogContent dividers>
+                        <DialogContentText>
+                            {book.volumeInfo.description}
+                        </DialogContentText>
+                    </DialogContent>
+                <DialogActions>
+                    <Button variant="secondary">Add to Favorites</Button>
+                </DialogActions>
+
+
+                </Dialog>
             </Grid>
         )
     } else {
         return (
-            <Grid item s={12} md={6}>
+            <Grid item xs={12} md={4}>
                 <CardActionArea onClick={handleOpen}>
                     <Card sx={{ height: 200, display: 'flex' }}>
                         <CardContent sx={{ flex: 1 }}>
@@ -99,8 +105,8 @@ const GalleryItem = ({ book }) => {
                             {book.volumeInfo.title}
                         </Typography>
                         <Typography variant="subtitle1" color="text.secondary">
-                                {book.volumeInfo.authors}
-                            </Typography>
+                            {book.volumeInfo.authors}
+                        </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                             {book.volumeInfo.description}
                         </Typography>
