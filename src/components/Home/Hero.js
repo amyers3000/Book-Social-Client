@@ -33,7 +33,7 @@ const Hero = () => {
                     Let's Get Reading!
                 </Typography>
                 <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                    Add books to your collection for your friends to see! Search by title or author:
+                    Share books by adding them to your collection:
                 </Typography>
                 <Stack
                     sx={{ pt: 4 }}

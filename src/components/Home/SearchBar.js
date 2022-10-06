@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
+import { TextField, Button } from '@mui/material/'
 
 
 function SearchBar(props) {
@@ -10,7 +9,7 @@ function SearchBar(props) {
     return (
         <form style={{ display: 'flex', justifyContent: 'center', paddingBottom: 50 }} onSubmit={(e) => props.handleSearch(e, title, author)}>
             <div>
-                <TextField fullWidth type="text" placeholder="Enter a title here" onChange={(e) => setTitle(e.target.value)} />
+                <TextField required={true} fullWidth type="text" placeholder="Enter a title here" onChange={(e) => setTitle(e.target.value)} />
             </div>
             <div>
                 <TextField fullWidth type="text" placeholder="Enter a author here" onChange={(e) => setAuthor(e.target.value)} />
