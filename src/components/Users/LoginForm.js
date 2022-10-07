@@ -1,10 +1,10 @@
 import { useContext, useState } from "react"
-import { Grid, Box, Avatar, Button, CssBaseline, TextField, Link, Typography, Container } from '@mui/material'
+import { Grid, Box, Avatar, Button, CssBaseline, TextField, Typography, Container } from '@mui/material'
 import { CurrentUser } from "../../context/CurrentUser"
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate, Link } from 'react-router-dom'
+import { logIn } from '../../lib'
 
 function LoginForm() {
     const navigate = useNavigate()
@@ -15,18 +15,12 @@ function LoginForm() {
         password: ''
     })
     const [errorMessage, setErrorMessage] = useState(null)
+    
 
     async function handleSubmit(e) {
         e.preventDefault()
-        const response = await fetch(`http://localhost:5000/users/login/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(credentials)
-        })
-        const data = await response.json()
-        if (response.status === 200) {
+        const data = await logIn(credentials)
+        if (data.user) {
             setCurrentUser(data.user.firstName)
             localStorage.setItem('token', data.token)
             navigate('/Home')
@@ -93,7 +87,7 @@ function LoginForm() {
                         </Button>
                         <Grid container>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link to="/signup">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

@@ -5,28 +5,33 @@ import Gallery from './Gallery'
 import SearchBar from './SearchBar'
 import Navbar from '../NavbarLayout/Navbar'
 import Hero from './Hero'
+import { useNavigate } from 'react-router-dom'
 
 
 const Home = () => {
   let [title, setTitle] = useState('Alex')
   let [author, setAuthor] = useState('')
   let [data, setData] = useState([])
+  const navigate = useNavigate()
 
 
   const urlBase = "http://localhost:5000/books/"
 
   useEffect(() => {
+    
     if (title || author) {
       const fetchData = async () => {
-        document.title = `${title}`
-        let response = await fetch(urlBase + `${title}/${author}`)
+        let response = await fetch(urlBase + `${title}/${author}`,{
+          headers: {
+              'Authorization': `Bearer ${localStorage.token}`
+          }})
         const resData = await response.json()
-        if (resData) {
-          setData(resData)
-        } else {
-
-        }
         console.log(resData)
+        if (resData.message == "unauthorized") {
+          navigate('/')
+        } else {
+          setData(resData)
+        }
       }
       fetchData()
     }

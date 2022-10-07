@@ -13,7 +13,7 @@ function SearchBar(props) {
             <div>
                 <TextField fullWidth type="text" placeholder="Enter a author here" onChange={(e) => setAuthor(e.target.value)} />
             </div>
-            <Button variant='contained' color='secondary' type='submit'>Submit</Button>
+            <Button variant='contained' color='secondary' type='submit'>Search</Button>
 
         </form>
     )

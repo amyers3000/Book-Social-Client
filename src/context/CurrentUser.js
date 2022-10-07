@@ -14,11 +14,16 @@ function CurrentUserProvider({children}){
                     'Authorization': `Bearer ${localStorage.token}`
                 }
             })
-            let user = await response.json()
-            console.log(user)
-            setCurrentUser(user.firstName)
+            let data = await response.json()
+            console.log(data.user)
+            if(data.message == "unauthorized"){
+                return
+            }else{
+                setCurrentUser(data.user.firstName)
+            }
         }
             getLoggedInUser()
+            
     }, [] )
 
     return (
