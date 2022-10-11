@@ -11,7 +11,7 @@ function Gallery() {
     return (
 
         <Container maxWidth='lg'>
-            <Grid container alignContent={'center'}  spacing={2}>
+            <Grid container  spacing={2}>
                 {data.map((book) => (
                     <GalleryItem key={book.id} book={book} />
                 ))}

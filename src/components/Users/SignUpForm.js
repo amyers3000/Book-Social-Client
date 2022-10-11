@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { CurrentUser } from "../../context/CurrentUser"
 import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { signUp } from '../../lib';
 
 const SignUpForm = () => {
-    const navigate = useNavigate()
+    const navigate  = useNavigate()
     const theme = createTheme();
     const { setCurrentUser } = useContext(CurrentUser)
     const [credentials, setCredentials] = useState({
@@ -21,13 +21,14 @@ const SignUpForm = () => {
     const [errorMessage, setErrorMessage] = useState(null)
 
 
+
     async function handleSubmit(e) {
         e.preventDefault()
         const data = await signUp(credentials)
         if (data.user) {
             setCurrentUser(data.user.firstName)
             localStorage.setItem('token', data.token)
-            navigate('/Home')
+            navigate('/books')
         } else {
             setErrorMessage(data.message)
         }

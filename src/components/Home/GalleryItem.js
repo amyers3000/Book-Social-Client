@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { Typography, Grid, Card, CardActionArea, CardContent, CardMedia, Modal, Box, Button, Icon, Dialog, DialogContent, DialogTitle, DialogContentText, DialogActions } from '@mui/material';
-import Error from '../Error/Error'
+import { saveFavorite } from '../../lib';
+import parse from 'html-react-parser'
+
 
 const GalleryItem = ({ book }) => {
     let [open, setOpen] = useState(false)
     const handleClose = () => setOpen(false)
     const handleOpen = () => setOpen(true)
 
-    async function handleSave() {
-
+    async function handleSave(){
+        await saveFavorite({id: book.id})
     }
 
     const style = {
@@ -34,7 +36,7 @@ const GalleryItem = ({ book }) => {
                                 {book.volumeInfo.title}
                             </Typography>
                             <Typography variant="subtitle1" color="text.secondary">
-                                {book.volumeInfo.authors[0]}
+                                { book.volumeInfo.authors ? book.volumeInfo.authors[0] : ""}
                             </Typography>
                             <Icon component='a' color="secondary">add_circle</Icon>
                         </CardContent>
@@ -56,19 +58,17 @@ const GalleryItem = ({ book }) => {
                     <DialogTitle id="modal-modal-title">
                         {book.volumeInfo.title}
                     </DialogTitle>
-                    <DialogContentText sx={{ pl:3}}>
-                        By: {book.volumeInfo.authors[0]}
+                    <DialogContentText sx={{ pl: 3 }}>
+                        {book.volumeInfo.authors ? book.volumeInfo.authors[0] : ""}
                     </DialogContentText>
                     <DialogContent dividers>
                         <DialogContentText>
-                            {book.volumeInfo.description}
+                            {book.volumeInfo.description ? parse(book.volumeInfo.description) : "None"}
                         </DialogContentText>
                     </DialogContent>
-                <DialogActions>
-                    <Button variant="secondary">Add to Favorites</Button>
-                </DialogActions>
-
-
+                    <DialogActions>
+                        <Button onClick={handleSave} variant="secondary">Add to Favorites</Button>
+                    </DialogActions>
                 </Dialog>
             </Grid>
         )
@@ -82,7 +82,7 @@ const GalleryItem = ({ book }) => {
                                 {book.volumeInfo.title}
                             </Typography>
                             <Typography variant="subtitle1" color="text.secondary">
-                                {book.volumeInfo.authors}
+                                {book.volumeInfo.authors ? book.volumeInfo.authors[0] : ""}
                             </Typography>
                             <Icon color="secondary">add_circle</Icon>
                         </CardContent>
@@ -94,25 +94,28 @@ const GalleryItem = ({ book }) => {
                         />
                     </Card>
                 </CardActionArea>
-                <Modal
+                <Dialog
                     open={open}
                     onClose={handleClose}
+                    scroll='paper'
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <Box sx={style}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                            {book.volumeInfo.title}
-                        </Typography>
-                        <Typography variant="subtitle1" color="text.secondary">
-                            {book.volumeInfo.authors}
-                        </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            {book.volumeInfo.description}
-                        </Typography>
-                        <Button onClick={handleSave} color='secondary'>Add to Favorites</Button>
-                    </Box>
-                </Modal>
+                    <DialogTitle id="modal-modal-title">
+                        {book.volumeInfo.title}
+                    </DialogTitle>
+                    <DialogContentText sx={{ pl: 3 }}>
+                        By: {book.volumeInfo.authors ? book.volumeInfo.authors[0] : ""}
+                    </DialogContentText>
+                    <DialogContent dividers>
+                        <DialogContentText>
+                            {book.volumeInfo.description ? parse(book.volumeInfo.description) : "None"}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleSave} variant="secondary">Add to Favorites</Button>
+                    </DialogActions>
+                </Dialog>
             </Grid>
         )
     }

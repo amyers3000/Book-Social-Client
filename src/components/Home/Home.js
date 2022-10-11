@@ -6,6 +6,7 @@ import SearchBar from './SearchBar'
 import Navbar from '../NavbarLayout/Navbar'
 import Hero from './Hero'
 import { useNavigate } from 'react-router-dom'
+import { authenticateSession } from '../../lib'
 
 
 const Home = () => {
@@ -17,8 +18,8 @@ const Home = () => {
 
   const urlBase = "http://localhost:5000/books/"
 
-  useEffect(() => {
-    
+   useEffect(() => {
+   
     if (title || author) {
       const fetchData = async () => {
         let response = await fetch(urlBase + `${title}/${author}`,{
@@ -27,13 +28,15 @@ const Home = () => {
           }})
         const resData = await response.json()
         console.log(resData)
-        if (resData.message == "unauthorized") {
-          navigate('/')
+        if (resData.message === "unauthorized") {
+          navigate('/login')
         } else {
           setData(resData)
         }
       }
+      
       fetchData()
+      
     }
   }, [title, author])
 
@@ -45,14 +48,14 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <>
       <Navbar />
       <Hero />
       <SearchBar handleSearch={handleSearch} />
       <DataContext.Provider value={data} >
         <Gallery />
       </DataContext.Provider>
-    </div>
+    </>
   )
 
 

@@ -1,15 +1,16 @@
 
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import Logo from '../../assets/Logo.png'
 import SideBar from './SideBar';
-import PersonIcon from '@mui/icons-material/Person';;
+import PersonIcon from '@mui/icons-material/Person';
+import { CurrentUser } from '../../context/CurrentUser';
 
 
 
 
 const Navbar = () => {
+    const { currentUser } = useContext(CurrentUser)
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [open, setOpen] = useState(false)
     const pages =['Home', 'Favorites', 'Profile'] 
@@ -29,6 +30,8 @@ const Navbar = () => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    let displayUser = currentUser === undefined ? "Please Log In" : `Welcome ${currentUser}!`
 
     return (
         <div>
@@ -124,6 +127,7 @@ const Navbar = () => {
                             sx={{ mr: 2, ...(open && { display: 'none' }) }}
                         >
                             <PersonIcon />
+                            <Typography variant='h6' component='div' sx={{ pl: 1, display: { xs: 'none', md: 'flex' }}}> {displayUser}</Typography>
                         </IconButton>
                     </Toolbar>
                 </Container>

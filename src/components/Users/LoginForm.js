@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Grid, Box, Avatar, Button, CssBaseline, TextField, Typography, Container } from '@mui/material'
 import { CurrentUser } from "../../context/CurrentUser"
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -7,7 +7,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { logIn } from '../../lib'
 
 function LoginForm() {
-    const navigate = useNavigate()
+    const navigate  = useNavigate()
     const theme = createTheme();
     const { setCurrentUser } = useContext(CurrentUser)
     const [credentials, setCredentials] = useState({
@@ -15,7 +15,12 @@ function LoginForm() {
         password: ''
     })
     const [errorMessage, setErrorMessage] = useState(null)
-    
+
+    // useEffect(() => {
+    //     if (CurrentUser !== null || CurrentUser !== undefined) {
+    //         navigate('/books')
+    //     }
+    // },[])
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -23,7 +28,7 @@ function LoginForm() {
         if (data.user) {
             setCurrentUser(data.user.firstName)
             localStorage.setItem('token', data.token)
-            navigate('/Home')
+            navigate('/books')
         } else {
             setErrorMessage(data.message)
         }
