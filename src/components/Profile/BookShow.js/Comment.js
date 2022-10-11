@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
-import { CardContent, Typography, Card, Button, Dialog, DialogContent, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { CurrentUser } from '../../context/CurrentUser';
-import { deleteComment, editComment } from '../../lib';
+import { CardContent, Typography, Card, Button, Dialog, DialogContent, DialogActions, TextField } from '@mui/material'
+import { CurrentUser } from '../../../context/CurrentUser';
+import { deleteComment, editComment } from '../../../lib';
 
 const Comment = ({ comment }) => {
     const { currentUsername } = useContext(CurrentUser)
@@ -11,12 +11,12 @@ const Comment = ({ comment }) => {
     const handleOpen = () => setOpen(true)
 
 
-    // Deletes comment
+    // Deletes comment/discussion post
     async function handleDelete(e, commentId){
         e.preventDefault()
         deleteComment(commentId)
     }
-
+    // Edits comment/discussion post
     async function handleEdit(e, commentId, newContent){
         e.preventDefault()
         editComment(commentId, newContent )
@@ -28,7 +28,7 @@ const Comment = ({ comment }) => {
      let displayButtons = currentUsername === comment.user.username ? <span> <Button size='small' variant='secondary' onClick={handleOpen}>Edit</Button><Button size='small' variant='secondary' onClick={(e) => handleDelete(e, comment.commentId)}>Delete</Button></span> : ''
 
     return (
-        <Card variant='outlined' sx={{width:350}}>
+        <Card variant='outlined' sx={{width:380}}>
         <CardContent>
             <Typography variant='body1'>"{comment.content}"</Typography>
             <Typography variant='subtitle2'>-{comment.user.username}</Typography>

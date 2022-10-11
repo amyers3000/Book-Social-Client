@@ -6,6 +6,7 @@ export const CurrentUser = createContext()
 function CurrentUserProvider({children}){
     const [currentUser, setCurrentUser] = useState(null)
     const [currentUsername, setCurrentUsername] = useState(null)
+    const [currentFollowing, setCurrentFollowing] = useState(null)
     
 
     useEffect(() =>{
@@ -19,8 +20,10 @@ function CurrentUserProvider({children}){
             if(data.message === "unauthorized"){
                 return
             }else{
+                console.log(data.user.Following)
                 setCurrentUser(data.user.firstName)
                 setCurrentUsername(data.user.username)
+                setCurrentFollowing(data.user.Following)
             }
         }
             getLoggedInUser()
@@ -28,7 +31,7 @@ function CurrentUserProvider({children}){
     }, [] )
 
     return (
-        <CurrentUser.Provider value={{ currentUser, setCurrentUser, setCurrentUsername, currentUsername }}>
+        <CurrentUser.Provider value={{ currentUser, currentUsername, currentFollowing, setCurrentUser, setCurrentUsername, setCurrentFollowing }}>
             {children}
         </CurrentUser.Provider>
     )

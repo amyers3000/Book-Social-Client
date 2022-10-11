@@ -5,15 +5,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SideBar from './SideBar';
 import PersonIcon from '@mui/icons-material/Person';
 import { CurrentUser } from '../../context/CurrentUser';
+import { Link } from 'react-router-dom';
 
 
 
 
 const Navbar = () => {
     const { currentUser } = useContext(CurrentUser)
+    const { currentUsername } = useContext(CurrentUser)
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [open, setOpen] = useState(false)
-    const pages =['Home', 'Favorites', 'Profile'] 
+    
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -29,6 +31,7 @@ const Navbar = () => {
 
     const handleDrawerClose = () => {
         setOpen(false);
+        console.log(currentUsername)
     };
 
     let displayUser = currentUser === undefined ? "Please Log In" : `Welcome ${currentUser}!`
@@ -84,11 +87,11 @@ const Navbar = () => {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                                {pages.map((page) => (
-                                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center">{page}</Typography>
+                                
+                                    <MenuItem onClick={handleCloseNavMenu}>
+                                        <Link to={'/books'} textalign="center">Home</Link>
                                     </MenuItem>
-                                ))}
+                                
                             </Menu>
                         </Box>
                         <Typography
@@ -109,15 +112,23 @@ const Navbar = () => {
                             Book Social
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            {pages.map((page) => (
+                            
+                                <Link  style={{textDecoration:'none'}} to={'/books'} textalign="center">
                                 <Button
-                                    key={page}
                                     onClick={handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
-                                    {page}
+                                    <Typography>Home</Typography>
                                 </Button>
-                            ))}
+                                </Link>
+                                <Link  style={{textDecoration:'none'}} to={`/user/${currentUsername}`} textalign="center">
+                                <Button
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    <Typography>Profile</Typography>
+                                </Button>
+                                </Link>
                         </Box>
                         <IconButton
                             color="inherit"

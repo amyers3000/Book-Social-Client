@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { Grid, Box, Avatar, Button, CssBaseline, TextField, Typography, Container } from '@mui/material'
 import { CurrentUser } from "../../context/CurrentUser"
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -16,11 +16,6 @@ function LoginForm() {
     })
     const [errorMessage, setErrorMessage] = useState(null)
 
-    // useEffect(() => {
-    //     if (CurrentUser !== null || CurrentUser !== undefined) {
-    //         navigate('/books')
-    //     }
-    // },[])
 
     async function handleSubmit(e) {
         e.preventDefault()

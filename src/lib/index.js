@@ -116,3 +116,53 @@ export async function editComment(id, comments){
     })
     return response.json()
 }
+
+export async function profileInfo(username) {
+    const response = await fetch(`http://localhost:5000/users/user/${username}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.token}` 
+        },
+    })
+    return response.json()
+}
+
+export async function deleteBook(id){
+    const response = await fetch(`http://localhost:5000/favorites/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.token}`,
+            
+        }
+    })
+    return response.json()
+}
+
+export async function addFollower(id){
+    
+    const response = await fetch(`http://localhost:5000/users/follow/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.token}`,
+            
+        },
+        
+    })
+    return response.json()
+}
+export async function removeFollower(id){
+    
+    const response = await fetch(`http://localhost:5000/users/follow/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.token}`,
+            
+        },
+        
+    })
+    return response.json()
+}

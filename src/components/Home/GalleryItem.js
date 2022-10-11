@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Typography, Grid, Card, CardActionArea, CardContent, CardMedia, Modal, Box, Button, Icon, Dialog, DialogContent, DialogTitle, DialogContentText, DialogActions } from '@mui/material';
+import { Typography, Grid, Card, CardActionArea, CardContent, CardMedia, Button, Icon, Dialog, DialogContent, DialogTitle, DialogContentText, DialogActions } from '@mui/material';
 import { saveFavorite } from '../../lib';
 import parse from 'html-react-parser'
 
@@ -11,20 +11,10 @@ const GalleryItem = ({ book }) => {
 
     async function handleSave(){
         await saveFavorite({id: book.id})
+        setOpen(false)
     }
 
-    const style = {
-
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    }
+    
 
     if (book.volumeInfo.imageLinks) {
         return (
