@@ -52,7 +52,7 @@ const Home = () => {
 
   }
 
-  let content = error === "No books found" ? <Typography variant='h4' sx={{display:'flex', justifyContent:'center'}}>{error}</Typography> : <Gallery/>
+  let content = error === "No books found" ? <Typography variant='h3' sx={{display:'flex', justifyContent:'center'}}>{error}</Typography> : <Gallery/>
 
   return (
     <>

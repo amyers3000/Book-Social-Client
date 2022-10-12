@@ -1,4 +1,60 @@
-# Getting Started with Create React App
+# The Book Club - Client
+
+A social media application that brings book lovers together. The goal of this applicaiton is to not only connect people online but in person as well. The site features:
+
+- An authentication and authorization feature that allows users to create accounts and sign in
+
+- A search functionality that utilizes the Google Books API 
+
+- A favorites list that allows users to show off to friends there top reads
+
+- A comment section that allows users to connect with one another to discuss books
+
+- Ability to follow and unfollow users
+
+## Future Updates and Additions
+Some features that will be implemented in the future:
+
+- Admin privliges provided to some users
+
+- A list of book club events near the users location 
+
+- A map displaying local coffee shops and libraries for users to meet up at
+
+- More tweaking with CSS and picking out better colors 
+
+- Improve error handling
+
+- Find ways to make code more dry
+
+## Tools and Technologies
+
+React | Context | Reac-Router-Dom | Swiper | React-Scroll 
+
+## Instructions
+
+Run npm start to run applicaiton
+
+User is brought to sign in page by default. User can either sign in or make an account.
+
+Upon sign in, user will be redirected to the home page. Here the user can search books by either title or title and author. Results will be displayed in gallery.
+
+User can select a book card to get more details or add book to favorites.
+
+User has option to go to profile and view favorites. When viewing other profiles, this is the same display:
+
+- Favorite book can be clicked on and new section will be mounted below profile that gives the book details and discussion board( button displays that can navigate user to section ).
+- Discussion board allows user to communicate with others. Comments/Posts can be edited and deleted.
+- Option to remove book from favorites is also displayed
+- If viewing another users profile, button will display that allows user to add friend/connect
+
+Navbar has a friends feature in the right hand corner:
+- This side bar allows user to search for others
+- Displays all "Book Buds" user has
+
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -1,8 +1,8 @@
 
-
+let BASE_URL=process.env.REACT_APP_SERVER_API
 
 export async function logIn(credentials) {
-    const response = await fetch(`http://localhost:5000/users/login/`, {
+    const response = await fetch(`${BASE_URL}/users/login/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -13,7 +13,7 @@ export async function logIn(credentials) {
 }
 
 export async function signUp(credentials) {
-    const response = await fetch(`http://localhost:5000/users/signup/`, {
+    const response = await fetch(`${BASE_URL}/users/signup/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ export async function signUp(credentials) {
 }
 
 export async function displayBuds(currentUsername) {
-    const response = await fetch(`http://localhost:5000/users/user/${currentUsername}`, {
+    const response = await fetch(`${BASE_URL}/users/user/${currentUsername}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.token}`
@@ -35,7 +35,7 @@ export async function displayBuds(currentUsername) {
 
 
 export async function displaySearch(userSearch) {
-    const response = await fetch(`http://localhost:5000/users/search/${userSearch}`, {
+    const response = await fetch(`${BASE_URL}/users/search/${userSearch}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.token}`
@@ -45,7 +45,7 @@ export async function displaySearch(userSearch) {
 }
 
 export async function saveFavorite(id){
-    const response = await fetch(`http://localhost:5000/books`, {
+    const response = await fetch(`${BASE_URL}/books`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export async function saveFavorite(id){
 }
 
 export async function displayFavorite(id) {
-    const response = await fetch(`http://localhost:5000/favorites/${id}`, {
+    const response = await fetch(`${BASE_URL}/favorites/${id}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.token}`
@@ -69,7 +69,7 @@ export async function displayFavorite(id) {
 }
 
 export async function displayComments(id) {
-    const response = await fetch(`http://localhost:5000/favorites/${id}`, {
+    const response = await fetch(`${BASE_URL}/favorites/${id}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.token}`
@@ -79,7 +79,7 @@ export async function displayComments(id) {
 }
 
 export async function saveComment(id, comments){
-    const response = await fetch(`http://localhost:5000/comments/${id}`, {
+    const response = await fetch(`${BASE_URL}/comments/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
