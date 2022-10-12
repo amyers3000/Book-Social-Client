@@ -33,6 +33,8 @@ React | Context | Reac-Router-Dom | Swiper | React-Scroll
 
 ## Instructions
 
+Username: admin Password: admin
+
 Run npm start to run applicaiton
 
 User is brought to sign in page by default. User can either sign in or make an account.

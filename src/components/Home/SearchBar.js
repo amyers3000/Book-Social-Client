@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TextField, Button } from '@mui/material/'
+import { TextField, Button } from '@mui/material'
 
 function SearchBar({handleSearch}) {
     const [title, setTitle] = useState('')

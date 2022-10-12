@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-const urlBase = "https://book-social1.herokuapp.com/"
+let BASE_URL= process.env.REACT_APP_SERVER_API
 export const CurrentUser = createContext()
 
 function CurrentUserProvider({children}){
@@ -11,7 +11,8 @@ function CurrentUserProvider({children}){
 
     useEffect(() =>{
         async function getLoggedInUser(){
-            let response = await fetch(`${urlBase}users/check`, {
+            
+            let response = await fetch(`${BASE_URL}/users/check`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`
                 }

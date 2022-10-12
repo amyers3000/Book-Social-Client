@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Box, Typography, Container } from '@mui/material/';
+import { Stack, Box, Typography, Container } from '@mui/material';
 
 const Hero = () => {
     return (

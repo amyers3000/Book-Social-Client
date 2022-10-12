@@ -18,13 +18,13 @@ const Home = () => {
   const navigate = useNavigate()
 
 
-  const urlBase = "https://book-social1.herokuapp.com/books/"
+  let BASE_URL=process.env.REACT_APP_SERVER_API
 
    useEffect(() => {
    
     if (title || author) {
       const fetchData = async () => {
-        let response = await fetch(urlBase + `${title}/${author}`,{
+        let response = await fetch(`${BASE_URL}/books/${title}/${author}`,{
           headers: {
               'Authorization': `Bearer ${localStorage.token}`
           }})

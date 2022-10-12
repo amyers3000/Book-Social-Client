@@ -53,14 +53,7 @@ const SignUpForm = () => {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    {errorMessage !== null
-                        ? (
-                            <div className="alert alert-danger" role="alert">
-                                {errorMessage}
-                            </div>
-                        )
-                        : null
-                    }
+                  
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
