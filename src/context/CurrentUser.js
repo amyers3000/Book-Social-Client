@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-let BASE_URL= process.env.REACT_APP_SERVER_API
+let BASE_URL= process.env.REACT_APP_SERVER_URL
 export const CurrentUser = createContext()
 
 function CurrentUserProvider({children}){
@@ -12,7 +12,7 @@ function CurrentUserProvider({children}){
     useEffect(() =>{
         async function getLoggedInUser(){
             
-            let response = await fetch(`${BASE_URL}/users/check`, {
+            let response = await fetch(`${BASE_URL}api/users/check`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`
                 }

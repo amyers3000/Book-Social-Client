@@ -1,9 +1,9 @@
 
-let BASE_URL=process.env.REACT_APP_SERVER_API
+let BASE_URL=process.env.REACT_APP_SERVER_URL
 
 
 export async function logIn(credentials) {
-    const response = await fetch(`${BASE_URL}/users/login/`, {
+    const response = await fetch(`${BASE_URL}users/login/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -15,7 +15,7 @@ export async function logIn(credentials) {
 }
 
 export async function signUp(credentials) {
-    const response = await fetch(`${BASE_URL}/users/signup/`, {
+    const response = await fetch(`${BASE_URL}api/users/signup/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ export async function signUp(credentials) {
 }
 
 export async function displayBuds(currentUsername) {
-    const response = await fetch(`${BASE_URL}/users/user/${currentUsername}`, {
+    const response = await fetch(`${BASE_URL}api/users/user/${currentUsername}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.token}`
@@ -37,7 +37,7 @@ export async function displayBuds(currentUsername) {
 
 
 export async function displaySearch(userSearch) {
-    const response = await fetch(`${BASE_URL}/users/search/${userSearch}`, {
+    const response = await fetch(`${BASE_URL}api/users/search/${userSearch}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.token}`
@@ -47,7 +47,7 @@ export async function displaySearch(userSearch) {
 }
 
 export async function saveFavorite(id){
-    const response = await fetch(`${BASE_URL}/books`, {
+    const response = await fetch(`${BASE_URL}api/books`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export async function saveFavorite(id){
 }
 
 export async function displayFavorite(id) {
-    const response = await fetch(`${BASE_URL}/favorites/${id}`, {
+    const response = await fetch(`${BASE_URL}api/favorites/${id}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.token}`
@@ -71,7 +71,7 @@ export async function displayFavorite(id) {
 }
 
 export async function displayComments(id) {
-    const response = await fetch(`${BASE_URL}/favorites/${id}`, {
+    const response = await fetch(`${BASE_URL}api/favorites/${id}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.token}`
@@ -81,7 +81,7 @@ export async function displayComments(id) {
 }
 
 export async function saveComment(id, comments){
-    const response = await fetch(`${BASE_URL}/comments/${id}`, {
+    const response = await fetch(`${BASE_URL}api/comments/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ export async function saveComment(id, comments){
 
 
 export async function deleteComment(id){
-    const response = await fetch(`${BASE_URL}/comments/${id}`, {
+    const response = await fetch(`${BASE_URL}api/comments/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ export async function deleteComment(id){
 }
 
 export async function editComment(id, comments){
-    const response = await fetch(`${BASE_URL}/comments/${id}`, {
+    const response = await fetch(`${BASE_URL}api/comments/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ export async function editComment(id, comments){
 }
 
 export async function profileInfo(username) {
-    const response = await fetch(`${BASE_URL}/users/user/${username}`, {
+    const response = await fetch(`${BASE_URL}api/users/user/${username}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ export async function profileInfo(username) {
 }
 
 export async function deleteBook(id){
-    const response = await fetch(`${BASE_URL}/favorites/${id}`, {
+    const response = await fetch(`${BASE_URL}api/favorites/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ export async function deleteBook(id){
 
 export async function addFollower(id){
     
-    const response = await fetch(`${BASE_URL}/users/follow/${id}`, {
+    const response = await fetch(`${BASE_URL}api/users/follow/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ export async function addFollower(id){
 }
 export async function removeFollower(id){
     
-    const response = await fetch(`${BASE_URL}/users/follow/${id}`, {
+    const response = await fetch(`${BASE_URL}api/users/follow/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

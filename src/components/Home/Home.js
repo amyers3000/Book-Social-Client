@@ -18,13 +18,13 @@ const Home = () => {
   const navigate = useNavigate()
 
 
-  let BASE_URL=process.env.REACT_APP_SERVER_API
+  let BASE_URL=process.env.REACT_APP_SERVER_URL
 
    useEffect(() => {
    
     if (title || author) {
       const fetchData = async () => {
-        let response = await fetch(`${BASE_URL}/books/${title}/${author}`,{
+        let response = await fetch(`${BASE_URL}api/books/${title}/${author}`,{
           headers: {
               'Authorization': `Bearer ${localStorage.token}`
           }})
