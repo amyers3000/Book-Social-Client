@@ -4,13 +4,15 @@ import { Link as Link1 } from 'react-router-dom'
 
 
 
-const FavoriteBook = ({ book, username }) => {
+
+
+const FavoriteBook = ({ book, username, handleViewBookButton }) => {
     const bookId = book.bookId
+    
     return (
         <Card>
-            
             <Link1 to={`/user/${username}/${bookId}`}>
-                <CardActionArea>
+                <CardActionArea onClick={() => handleViewBookButton(true)}>
                     <CardContent
                         component='img'
                         src={book.image}

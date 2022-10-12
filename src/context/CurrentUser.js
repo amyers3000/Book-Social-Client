@@ -20,7 +20,6 @@ function CurrentUserProvider({children}){
             if(data.message === "unauthorized"){
                 return
             }else{
-                console.log(data.user.Following)
                 setCurrentUser(data.user.firstName)
                 setCurrentUsername(data.user.username)
                 setCurrentFollowing(data.user.Following)
@@ -28,7 +27,7 @@ function CurrentUserProvider({children}){
         }
             getLoggedInUser()
             
-    }, [] )
+    }, [currentUser] )
 
     return (
         <CurrentUser.Provider value={{ currentUser, currentUsername, currentFollowing, setCurrentUser, setCurrentUsername, setCurrentFollowing }}>

@@ -11,8 +11,7 @@ import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
-    const { currentUser } = useContext(CurrentUser)
-    const { currentUsername } = useContext(CurrentUser)
+    const { currentUsername, currentUser } = useContext(CurrentUser)
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [open, setOpen] = useState(false)
     

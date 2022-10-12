@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Typography, Grid, Card, CardActionArea, CardContent, CardMedia, Button, Icon, Dialog, DialogContent, DialogTitle, DialogContentText, DialogActions } from '@mui/material';
+import { Typography, Grid, Card, CardActionArea, CardContent, CardMedia, Button, Dialog, DialogContent, DialogTitle, DialogContentText, DialogActions } from '@mui/material';
 import { saveFavorite } from '../../lib';
 import parse from 'html-react-parser'
 
@@ -28,7 +28,7 @@ const GalleryItem = ({ book }) => {
                             <Typography variant="subtitle1" color="text.secondary">
                                 { book.volumeInfo.authors ? book.volumeInfo.authors[0] : ""}
                             </Typography>
-                            <Icon component='a' color="secondary">add_circle</Icon>
+                            
                         </CardContent>
                         <CardMedia
                             component="img"
@@ -74,7 +74,7 @@ const GalleryItem = ({ book }) => {
                             <Typography variant="subtitle1" color="text.secondary">
                                 {book.volumeInfo.authors ? book.volumeInfo.authors[0] : ""}
                             </Typography>
-                            <Icon color="secondary">add_circle</Icon>
+                            
                         </CardContent>
                         <CardMedia
                             component="img"

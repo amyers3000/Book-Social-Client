@@ -45,7 +45,6 @@ const SideBar = ({ open, handleDrawerClose }) => {
 
 
   function logOut(e){
-    e.preventDefault()
     localStorage.removeItem('token')
     navigate('/login')
   }

@@ -6,16 +6,19 @@ import Comment from './Comment'
 import { saveComment } from '../../../lib/index'
 
 
+
 const BookShow = ({ id, currentUsername, handleRemove, username }) => {
 
   let [data, setData] = useState('')
   let [discussion, setDiscussion] = useState('')
+ 
 
 
   // Loads book data
   useEffect(() => {
     displayFavorite(id)
       .then((data) => setData(data))
+      
   }, [data, id])
 
 
@@ -76,7 +79,7 @@ const BookShow = ({ id, currentUsername, handleRemove, username }) => {
             <Box>
               <form style={{ justifyContent: 'center', paddingBottom: 50, width: 400 }} onSubmit={(e) => handleSave(e, discussion)}>
                 <div>
-                  <TextField fullWidth type="text" placeholder="Discuss here" onChange={(e) => setDiscussion(e.target.value)} />
+                  <TextField fullWidth value={discussion} type="text" placeholder="Discuss here" onChange={(e) => setDiscussion(e.target.value)} />
                 </div>
                 <Button fullWidth variant='contained' color='secondary' type='submit'>Enter</Button>
               </form>

@@ -1,6 +1,6 @@
 import {useContext, useEffect, useState} from 'react'
 import Navbar from '../NavbarLayout/Navbar'
-import { Container, Grid, Box, Typography, Button, Alert, AlertTitle} from '@mui/material'
+import { Container, Grid, Box, Typography, Button, Alert} from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
 import { SwiperSlide } from 'swiper/react'
 import SwiperInit from './SwiperInit'
@@ -12,6 +12,8 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import { Link } from 'react-scroll'
 
+
+
 const ProfileShow = () => {
 let { username } = useParams()
 let { id } = useParams()
@@ -19,14 +21,19 @@ let [userData, setUserData] = useState('')
 let [bookRemoved, setBookRemoved] = useState(false)
 let [isFollowing, setIsFollowing] = useState(false)
 let [isNotFollowing, setIsNotFollowing] = useState(false)
+let [displayBookSelected, setDisplayBookSelected] = useState(false)
 let { currentUsername, currentFollowing } = useContext(CurrentUser)
-let  navigate = useNavigate()
+let navigate = useNavigate()
+
  
 // Loads user info
-useEffect(() =>{
+ useEffect( () =>{
 profileInfo(username)
 .then((data) => setUserData(data))
-}, [bookRemoved, username, isFollowing])
+if(userData.message === 'unauthorized'){
+    navigate('/login')
+}  
+}, [bookRemoved, username, isFollowing, navigate, userData.message])
 
 // Handles removing book
 async function handleRemove(e, id){
@@ -50,6 +57,12 @@ setIsNotFollowing(true)
 await removeFollower(id)
 }
 
+
+let viewBookButton = displayBookSelected ? <Link smooth={true} duration={500} to='bookShow'><Button>View Book Discussion</Button></Link> : ''
+
+function handleViewBookButton(){
+    setDisplayBookSelected(true)
+}
 
 let successfulConnection = isFollowing ? <Alert severity="success">You have successfully followed user!</Alert> : ""
 let succesfulRemoval = isNotFollowing ? <Alert severity="success">You have successfully unfollowed user!</Alert> : ""
@@ -84,7 +97,7 @@ function displayBook(id){
         <Navbar/>
         {successfulConnection}
         {succesfulRemoval}
-        <Container maxWidth='lg' sx={{ mt: 20 }}>
+        <Container maxWidth='lg' sx={{ mt: 10 }}>
         <Grid container spacing={2}>
           <Grid item md={4} xs={12} sx={{ alignItems: 'center', alignContent: 'center', display: 'flex', justifyContent: 'center', mb: 5}}>
             <Box
@@ -98,21 +111,22 @@ function displayBook(id){
             <Typography variant='h2'>{userData.firstName} {userData.lastName} </Typography>
             <Typography variant='h4'>{userData.city}, {userData.state}</Typography>
             {displayFollowButton()}
+            {viewBookButton}
             </Box>
           </Grid>
         </Grid>
       </Container>
-      <Container >
-      <Link to='bookShow' smooth={true} duration={500}>
+      <Container sx={{mb:5}} >
       <SwiperInit >
         {userData.books?.map((book) => (
             <SwiperSlide key={book.bookId}>
-            <FavoriteBook book={book} key={book.bookId} username={username}/>
+            <FavoriteBook book={book} key={book.bookId} username={username} handleViewBookButton={handleViewBookButton}/>
             </SwiperSlide>
         ))}
       </SwiperInit>
-      </Link>
       </Container>
+      
+      
       {displayBook(id)}
     </>
   )
