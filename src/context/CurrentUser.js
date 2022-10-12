@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-const urlBase = "http://localhost:5000/"
+const urlBase = "https://book-social1.herokuapp.com/"
 export const CurrentUser = createContext()
 
 function CurrentUserProvider({children}){

@@ -96,7 +96,7 @@ export async function saveComment(id, comments){
 
 
 export async function deleteComment(id){
-    const response = await fetch(`http://localhost:5000/comments/${id}`, {
+    const response = await fetch(`${BASE_URL}/comments/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ export async function deleteComment(id){
 }
 
 export async function editComment(id, comments){
-    const response = await fetch(`http://localhost:5000/comments/${id}`, {
+    const response = await fetch(`${BASE_URL}/comments/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ export async function editComment(id, comments){
 }
 
 export async function profileInfo(username) {
-    const response = await fetch(`http://localhost:5000/users/user/${username}`, {
+    const response = await fetch(`${BASE_URL}/users/user/${username}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ export async function profileInfo(username) {
 }
 
 export async function deleteBook(id){
-    const response = await fetch(`http://localhost:5000/favorites/${id}`, {
+    const response = await fetch(`${BASE_URL}/favorites/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ export async function deleteBook(id){
 
 export async function addFollower(id){
     
-    const response = await fetch(`http://localhost:5000/users/follow/${id}`, {
+    const response = await fetch(`${BASE_URL}/users/follow/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ export async function addFollower(id){
 }
 export async function removeFollower(id){
     
-    const response = await fetch(`http://localhost:5000/users/follow/${id}`, {
+    const response = await fetch(`${BASE_URL}/users/follow/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
