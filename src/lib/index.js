@@ -1,6 +1,7 @@
 
 let BASE_URL=process.env.REACT_APP_SERVER_API
 
+
 export async function logIn(credentials) {
     const response = await fetch(`${BASE_URL}/users/login/`, {
         method: 'POST',
@@ -9,6 +10,7 @@ export async function logIn(credentials) {
         },
         body: JSON.stringify(credentials)
     })
+    console.log(BASE_URL)
     return response.json()
 }
 
