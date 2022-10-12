@@ -46,7 +46,7 @@ const SideBar = ({ open, handleDrawerClose }) => {
 
   function logOut(e){
     localStorage.removeItem('token')
-    navigate('/login')
+    navigate('/')
   }
 
   // Handle searching for other users

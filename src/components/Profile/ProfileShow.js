@@ -31,7 +31,7 @@ let navigate = useNavigate()
 profileInfo(username)
 .then((data) => setUserData(data))
 if(userData.message === 'unauthorized'){
-    navigate('/login')
+    navigate('/')
 }  
 }, [bookRemoved, username, isFollowing, navigate, userData.message])
 

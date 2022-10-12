@@ -31,7 +31,7 @@ const Home = () => {
         const resData = await response.json()
         console.log(resData)
         if (resData.message === "unauthorized") {
-          navigate('/login')
+          navigate('/')
         }else if(resData.message === "No books found"){
           setError(resData.message)
         } else {
