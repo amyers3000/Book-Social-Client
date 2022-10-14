@@ -31,6 +31,9 @@ Some features that will be implemented in the future:
 
 React | Context | Reac-Router-Dom | Swiper | React-Scroll 
 
+## Deployed on AWS - errors in production build that still need to be fixed
+www.Booksocial-env.eba-gfin5ti6.us-east-2.elasticbeanstalk.com
+
 ## Instructions
 
 Username: admin Password: admin
